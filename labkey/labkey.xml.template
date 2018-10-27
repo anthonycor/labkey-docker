@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context docBase="@@appDocBase@@" reloadable="true" crossContext="true">
+
+    <Resource name="jdbc/labkeyDataSource" auth="Container"
+        type="javax.sql.DataSource"
+        username="@@jdbcUser@@"
+        password="@@jdbcPassword@@"
+        driverClassName="@@jdbcDriver@@"
+        url="@@jdbcUrl@@"
+        maxActive="20"
+        maxTotal="20"
+        maxIdle="10"
+        accessToUnderlyingConnectionAllowed="true"
+        validationQuery="SELECT 1"
+        />
+
+    <Resource name="mail/Session" auth="Container"
+        type="javax.mail.Session"
+        mail.smtp.host="@@smtpHost@@"
+        mail.smtp.user="@@smtpUser@@"
+        mail.smtp.port="@@smtpPort@@"/>
+
+    <Resources cachingAllowed="true" cacheMaxSize="20000" />
+
+    <Loader loaderClass="org.labkey.bootstrap.LabkeyServerBootstrapClassLoader" />
+
+    <!-- Encryption key for encrypted property store -->
+    <Parameter name="MasterEncryptionKey" value="@@masterEncryptionKey@@" />
+
+
+    <!-- Pipeline configuration -->
+    <!--@@pipeline@@    <Parameter name="org.labkey.api.pipeline.config" value="@@pipelineConfigPath@@"/> @@pipeline@@-->
+
+   
+</Context>

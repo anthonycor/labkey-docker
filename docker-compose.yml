@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+    webapp:
+        build:
+            context: ./labkey
+            args:
+                labkey_tarball: ${LABKEY_TARBALL}
+            labels:
+                org.labkey.version: ${LABKEY_VERSION}
+                org.labkey.revision: ${LABKEY_REVISION}
+                org.labkey.distribution: ${LABKEY_DISTRIBUTION}
+        image: labkey:${LABKEY_VERSION}-${LABKEY_REVISION}
+        ports:
+            - "8080:8080"
+        volumes:
+            - labkey_files:/usr/local/labkey/files
+            - ./externalModules:/usr/local/labkey/externalModules
+        links:
+            - db:db
+        environment:
+            - LABKEY_DB_DRIVER=org.postgresql.Driver
+            - LABKEY_DB_URL=jdbc:postgresql://db:5432/${LABKEY_DB_NAME}
+            - LABKEY_DB_USER=${LABKEY_DB_USER}
+            - LABKEY_DB_PASSWORD=${LABKEY_DB_PASSWORD}
+            - LABKEY_DB=${LABKEY_DB_NAME}
+            - LABKEY_MASTER_KEY=${LABKEY_MASTER_KEY}
+    db:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=${LABKEY_DB_USER}
+            - POSTGRES_PASSWORD=${LABKEY_DB_PASSWORD}
+            - POSTGRES_DB=${LABKEY_DB_NAME}
+        volumes:
+            - labkey_db:/var/lib/postgresql/data
+
+volumes:
+    labkey_files:
+        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}
+        labels:
+            org.labkey.version: ${LABKEY_VERSION}
+            org.labkey.revision: ${LABKEY_REVISION}
+    labkey_db:
+        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}
+        labels:
+            org.labkey.version: ${LABKEY_VERSION}
+            org.labkey.revision: ${LABKEY_REVISION}
+
