@@ -9,7 +9,7 @@ services:
                 org.labkey.version: ${LABKEY_VERSION}
                 org.labkey.revision: ${LABKEY_REVISION}
                 org.labkey.distribution: ${LABKEY_DISTRIBUTION}
-        image: labkey:${LABKEY_VERSION}-${LABKEY_REVISION}
+        image: labkey:${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
         ports:
             - "8080:8080"
         volumes:
@@ -35,13 +35,15 @@ services:
 
 volumes:
     labkey_files:
-        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}
+        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY-DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
             org.labkey.revision: ${LABKEY_REVISION}
+            org.labkey.distribution: ${LABKEY-DISTRIBUTION}
     labkey_db:
-        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}
+        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY-DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
             org.labkey.revision: ${LABKEY_REVISION}
+            org.labkey.distribution: ${LABKEY-DISTRIBUTION}
 

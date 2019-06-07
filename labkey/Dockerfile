@@ -1,4 +1,5 @@
-FROM tomcat:8.5
+# TODO: use jdk12 when available from docker hub
+FROM tomcat:9.0-jdk11
 
 ARG labkey_tarball
 
