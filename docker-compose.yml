@@ -4,7 +4,8 @@ services:
         build:
             context: ./labkey
             args:
-                labkey_tarball: ${LABKEY_TARBALL}
+                labkey_binary_url: ${LABKEY_BINARY_URL}
+                labkey_sha512: ${LABKEY_SHA512}
             labels:
                 org.labkey.version: ${LABKEY_VERSION}
                 org.labkey.revision: ${LABKEY_REVISION}
@@ -35,15 +36,15 @@ services:
 
 volumes:
     labkey_files:
-        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY-DISTRIBUTION}
+        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
             org.labkey.revision: ${LABKEY_REVISION}
-            org.labkey.distribution: ${LABKEY-DISTRIBUTION}
+            org.labkey.distribution: ${LABKEY_DISTRIBUTION}
     labkey_db:
-        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY-DISTRIBUTION}
+        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
             org.labkey.revision: ${LABKEY_REVISION}
-            org.labkey.distribution: ${LABKEY-DISTRIBUTION}
+            org.labkey.distribution: ${LABKEY_DISTRIBUTION}
 
