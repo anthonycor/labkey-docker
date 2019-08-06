@@ -23,6 +23,6 @@ Custom modules can be placed in the externalModules directory and they will be b
   * Base tomcat image changes from 8.5 to 9.0-jdk11
 * **19.2.0** 2019-08-05
   * updated .env file to use the 19.2.0 Community Edition
-  * Base tomcat image changes from 9.0-jdk11 to 9.0-jdk12-openjdk-oracle
+  * Changed labkey base image from tomcat:9.0-jdk11 to tomcat:9.0-jdk12-adoptopenjdk-hotspot
   * Added Labkey binary sha512 checksum check
   * fixed volume labels
