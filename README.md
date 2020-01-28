@@ -26,3 +26,6 @@ Custom modules can be placed in the externalModules directory and they will be b
   * Changed labkey base image from tomcat:9.0-jdk11 to tomcat:9.0-jdk12-adoptopenjdk-hotspot
   * Added Labkey binary sha512 checksum check
   * fixed volume labels
+* **19.3.0** 2020-01-27
+  * updated .env file to use the 19.3.0 Community Edition
+  * set the JVM memory to 2G via CATALINA_OPTS environment variable in docker-compose.yml

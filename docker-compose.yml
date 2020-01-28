@@ -19,6 +19,7 @@ services:
         links:
             - db:db
         environment:
+            - CATALINA_OPTS=-Xms2048m -Xmx2048m
             - LABKEY_DB_DRIVER=org.postgresql.Driver
             - LABKEY_DB_URL=jdbc:postgresql://db:5432/${LABKEY_DB_NAME}
             - LABKEY_DB_USER=${LABKEY_DB_USER}
