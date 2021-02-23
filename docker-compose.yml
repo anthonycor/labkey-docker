@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 services:
     webapp:
         build:
@@ -8,9 +8,8 @@ services:
                 labkey_sha512: ${LABKEY_SHA512}
             labels:
                 org.labkey.version: ${LABKEY_VERSION}
-                org.labkey.revision: ${LABKEY_REVISION}
                 org.labkey.distribution: ${LABKEY_DISTRIBUTION}
-        image: labkey:${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
+        image: labkey:${LABKEY_VERSION}-${LABKEY_DISTRIBUTION}
         ports:
             - "8080:8080"
         volumes:
@@ -26,8 +25,9 @@ services:
             - LABKEY_DB_PASSWORD=${LABKEY_DB_PASSWORD}
             - LABKEY_DB=${LABKEY_DB_NAME}
             - LABKEY_MASTER_KEY=${LABKEY_MASTER_KEY}
+            - CATALINA_OPTS=-Xmx4g -Xms3g -XX:MaxPermSize=2048m
     db:
-        image: postgres:9.6
+        image: postgres:12
         environment:
             - POSTGRES_USER=${LABKEY_DB_USER}
             - POSTGRES_PASSWORD=${LABKEY_DB_PASSWORD}
@@ -37,15 +37,13 @@ services:
 
 volumes:
     labkey_files:
-        name: labkey_files_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
+        name: labkey_files_${LABKEY_VERSION}-${LABKEY_DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
-            org.labkey.revision: ${LABKEY_REVISION}
             org.labkey.distribution: ${LABKEY_DISTRIBUTION}
     labkey_db:
-        name: labkey_db_${LABKEY_VERSION}-${LABKEY_REVISION}-${LABKEY_DISTRIBUTION}
+        name: labkey_db_${LABKEY_VERSION}-${LABKEY_DISTRIBUTION}
         labels:
             org.labkey.version: ${LABKEY_VERSION}
-            org.labkey.revision: ${LABKEY_REVISION}
             org.labkey.distribution: ${LABKEY_DISTRIBUTION}
 

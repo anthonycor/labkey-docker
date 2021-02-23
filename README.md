@@ -18,8 +18,13 @@ Custom modules can be placed in the externalModules directory and they will be b
 
 
 # Change Log:
+* **20.11.0.1** 2021-02-23
+  * updated .env to use the 20.11.0.1 Community Edition tarball from 19.1.1
+  * Base tomcat image changes from 9.0-jdk11 to 9.0-jdk15-openjdk.
+  * Change postgres image from 9.6 to 12
+  * Remove LABKEY_REVISION variable from docker-compose.yml; artifact of SVN, no longer used with Git
 * **19.1.1** 2019-06-07
-  * updated .env file to use the 19.1.1 Community Edition tarball from 18.2. 
+  * updated .env file to use the 19.1.1 Community Edition tarball from 18.2.
   * Base tomcat image changes from 8.5 to 9.0-jdk11
 * **19.2.0** 2019-08-05
   * updated .env file to use the 19.2.0 Community Edition

@@ -1,4 +1,4 @@
-FROM tomcat:9.0-jdk12-adoptopenjdk-hotspot
+FROM tomcat:9.0-jdk15-openjdk
 
 ARG labkey_binary_url
 ARG labkey_sha512
